@@ -16,11 +16,12 @@ test('Should render the user profile', async () => {
   render(<Home user={user} />)
 
   // can destructure...
-  const { name, color, motto, likes } = user
+  //
+  const { name, motto, likes } = user
 
   const profileName = await screen.getByRole('heading', { name: name })
   // ONLY NEED ONE AWAIT - PROFILE HAS ALREADY BEEN FETCHED
-  const profileMotto = screen.getByText(/res non verba/i)
+  const profileMotto = screen.getByText(motto)
   const profileInterestsHeader = screen.getByRole('heading', { name: /interests/i })
   const profileAvatar = screen.getByAltText(/avatar/i)
   const profileHeaderImg = screen.getByAltText(/header/i)
@@ -33,5 +34,5 @@ test('Should render the user profile', async () => {
 
   const profileInterests = await screen.findAllByRole('listitem')
 
-  expect(profileInterests).toHaveLength(6)
+  expect(profileInterests).toHaveLength(likes.length)
 })
