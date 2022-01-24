@@ -15,11 +15,15 @@ const user = {
 test('Should render the user profile', async () => {
   render(<Home user={user} />)
 
+  // can destructure...
+  // const { name, color, motto, likes } = user
+
   const profileName = await screen.getByRole('heading', { name: /vonta/i })
-  const profileMotto = await screen.getByText(/res non verba/i)
-  const profileInterestsHeader = await screen.getByRole('heading', { name: /interests/i })
-  const profileAvatar = await screen.getByAltText(/avatar/i)
-  const profileHeaderImg = await screen.getByAltText(/header/i)
+  // ONLY NEED ONE AWAIT - PROFILE HAS ALREADY BEEN FETCHED
+  const profileMotto = screen.getByText(/res non verba/i)
+  const profileInterestsHeader = screen.getByRole('heading', { name: /interests/i })
+  const profileAvatar = screen.getByAltText(/avatar/i)
+  const profileHeaderImg = screen.getByAltText(/header/i)
 
   expect(profileName).toBeInTheDocument()
   expect(profileMotto).toBeInTheDocument()
