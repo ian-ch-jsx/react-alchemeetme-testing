@@ -16,9 +16,9 @@ test('Should render the user profile', async () => {
   render(<Home user={user} />)
 
   // can destructure...
-  // const { name, color, motto, likes } = user
+  const { name, color, motto, likes } = user
 
-  const profileName = await screen.getByRole('heading', { name: /vonta/i })
+  const profileName = await screen.getByRole('heading', { name: name })
   // ONLY NEED ONE AWAIT - PROFILE HAS ALREADY BEEN FETCHED
   const profileMotto = screen.getByText(/res non verba/i)
   const profileInterestsHeader = screen.getByRole('heading', { name: /interests/i })
